@@ -39,7 +39,7 @@ type TextToSpeechRequest struct {
 }
 
 type SpeechToSpeechRequest struct {
-	Audio         string         `json:"audio"`
+	Audio         multipart.File `json:"audio"`
 	ModelID       string         `json:"model_id,omitempty"`
 	VoiceSettings *VoiceSettings `json:"voice_settings,omitempty"`
 }
