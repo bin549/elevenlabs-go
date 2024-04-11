@@ -226,7 +226,7 @@ func (c *Client) SpeechToSpeech(voiceID string, stsReq SpeechToSpeechRequest, qu
 		return nil, err
 	}
 	b := bytes.Buffer{}
-	err = c.doRequest(c.ctx, &b, http.MethodPost, fmt.Sprintf("%s/text-to-speech/%s", c.baseURL, voiceID), bytes.NewBuffer(reqBody), contentTypeJSON, queries...)
+	err = c.doRequest(c.ctx, &b, http.MethodPost, fmt.Sprintf("%s/speech-to-speech/%s", c.baseURL, voiceID), bytes.NewBuffer(reqBody), contentTypeJSON, queries...)
 	if err != nil {
 		return nil, err
 	}
