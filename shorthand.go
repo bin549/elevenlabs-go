@@ -15,6 +15,10 @@ func TextToSpeechStream(streamWriter io.Writer, voiceID string, ttsReq TextToSpe
 	return getDefaultClient().TextToSpeechStream(streamWriter, voiceID, ttsReq, queries...)
 }
 
+func SpeechToSpeech(voiceID string, stsReq SpeechToSpeechRequest, queries ...QueryFunc) ([]byte, error) {
+	return getDefaultClient().SpeechToSpeech(voiceID, stsReq, queries...)
+}
+
 // GetModels calls the GetModels method on the default client.
 func GetModels() ([]Model, error) {
 	return getDefaultClient().GetModels()

@@ -220,6 +220,19 @@ func (c *Client) TextToSpeech(voiceID string, ttsReq TextToSpeechRequest, querie
 	return b.Bytes(), nil
 }
 
+func (c *Client) SpeechToSpeech(voiceID string, stsReq SpeechToSpeechRequest, queries ...QueryFunc) ([]byte, error) {
+	reqBody, err := json.Marshal(stsReq)
+	if err != nil {
+		return nil, err
+	}
+	b := bytes.Buffer{}
+	err = c.doRequest(c.ctx, &b, http.MethodPost, fmt.Sprintf("%s/text-to-speech/%s", c.baseURL, voiceID), bytes.NewBuffer(reqBody), contentTypeJSON, queries...)
+	if err != nil {
+		return nil, err
+	}
+	return b.Bytes(), nil
+}
+
 // TextToSpeech converts and streams a given text to speech audio using a certain voice.
 //
 // It takes an io.Writer argument to which the streamed audio will be copied, a string argument that represents the
